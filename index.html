@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kunal Tamuli // Student Portfolio</title>
+  <meta name="description" content="Personal Developer Portfolio of Kunal Tamuli - MCA student and technology explorer. Exploration of projects, skills, and coding signals.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Layer Core Starfield -->
+  <canvas id="starfield"></canvas>
+  <div class="mouse-glow-overlay"></div>
+  <div class="scanlines"></div>
+
+  <!-- Persistent Astronaut Spacecraft HUD Frame -->
+  <div class="hud-frame">
+    <div class="hud-corner top-left"></div>
+    <div class="hud-corner top-right"></div>
+    <div class="hud-corner bottom-left"></div>
+    <div class="hud-corner bottom-right"></div>
+    
+    <div class="hud-bracket left-mid"></div>
+    <div class="hud-bracket right-mid"></div>
+  </div>
+
+  <!-- Cinematic Boot/Loading Diagnostics Screen -->
+  <div id="boot-screen">
+    <div class="boot-terminal">
+      <div class="boot-header">
+        <span>CORE // DIAGNOSTICS</span>
+        <span id="hud-live-clock-boot">SAT_CONN_ACTIVE</span>
+      </div>
+      <div class="boot-identity">
+        <h1 class="boot-name">KUNAL TAMULI</h1>
+        <div class="boot-subtitle">Initializing Personal System...</div>
+      </div>
+      <div class="boot-logs" id="boot-diagnostics-log">
+        <!-- Javascript fills logs sequentially -->
+      </div>
+      <div class="boot-progress-container">
+        <div class="boot-progress-bar" id="boot-progress"></div>
+      </div>
+      <div class="boot-percentage" id="boot-percent">0%</div>
+    </div>
+  </div>
+
+  <!-- Persistent Header Navigation Bar -->
+  <header class="persistent-nav">
+    <div class="nav-brand">
+      [ KUNAL // SYSTEM_V2.6 ]
+    </div>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#skills">GALAXY</a></li>
+        <li><a href="#projects">MISSIONS</a></li>
+        <li><a href="#journey">JOURNEY</a></li>
+        <li><a href="#github">GITHUB</a></li>
+        <li><a href="#resume">DOSSIER</a></li>
+        <li><a href="#contact">TERMINAL</a></li>
+      </ul>
+    </nav>
+    <div class="nav-status">
+      <button class="audio-toggle-btn" id="audio-toggle">SOUND: ON</button>
+      <span id="hud-live-clock">SYS TIME: 2026-08-16 // 00:00:00</span>
+      <span class="status-dot"></span>
+      <span>ONLINE</span>
+    </div>
+  </header>
+
+  <!-- Console Views Router Container -->
+  <main id="console-container">
+
+    <!-- 1. HOME VIEW -->
+    <section id="view-home" class="console-view active">
+      <div class="home-container">
+        <div class="home-hud-tag">[ ORBITAL NODE // ASIA-EAST ]</div>
+        <h1 class="home-headline" style="line-height: 1.1;">ENTER KUNAL'S<br>UNIVERSE</h1>
+        <p class="home-supporting-text">MCA STUDENT • FRONTEND DEVELOPER • TECHNOLOGY EXPLORER</p>
+        <p style="font-size: 14px; color: var(--text-secondary); max-width: 550px; margin: var(--spacing-sm) auto var(--spacing-lg) auto; line-height: 1.6; text-align: center;">
+          "An MCA student passionate about building web applications, exploring modern technologies, and turning ideas into practical digital experiences."
+        </p>
+        
+        <div class="home-ctas">
+          <button class="btn-cosmic" id="home-cta-explore">EXPLORE MY WORK</button>
+          <a class="btn-cosmic secondary" href="#resume" onclick="navigateToView('resume'); return false;">VIEW DOSSIER</a>
+        </div>
+        
+        <div class="home-stats">
+          <div class="home-stat-item">
+            <span class="home-stat-val">04</span>
+            <span class="home-stat-lbl">Featured Missions</span>
+          </div>
+          <div class="home-stat-item">
+            <span class="home-stat-val">01</span>
+            <span class="home-stat-lbl">Frontend Internship</span>
+          </div>
+          <div class="home-stat-item">
+            <span class="home-stat-val">∞</span>
+            <span class="home-stat-lbl">Curiosity Index</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="scroll-indicator">
+        <span>SCROLL TO EXPLORE</span>
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ABOUT ME VIEW (The Astronaut Profile) -->
+    <section id="view-about" class="console-view">
+      <h2 class="view-title">MEET THE ASTRONAUT</h2>
+      <div class="view-subtitle">Crew Registry & Profile Logs</div>
+      
+      <div class="about-grid">
+        <div class="astronaut-frame-container">
+          <div class="glass-panel" data-tech-tag="AVATAR_01" style="width:100%; aspect-ratio:1; display:flex; justify-content:center; align-items:center; position:relative; background:radial-gradient(circle at center, rgba(124, 77, 255, 0.1) 0%, transparent 70%);">
+            <div class="astronaut-avatar-wrapper">
+              <div class="astronaut-image">
+                <!-- Embedded SVG Astronaut Vector -->
+                <svg viewBox="0 0 100 100" class="astronaut-illustration">
+                  <defs>
+                    <radialGradient id="helmet-glass" cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stop-color="#00f5d4" stop-opacity="0.6"/>
+                      <stop offset="70%" stop-color="#00a2ff" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#7c4dff" stop-opacity="0.1"/>
+                    </radialGradient>
+                  </defs>
+                  <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(0,210,255,0.15)" stroke-width="1"/>
+                  <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(0,210,255,0.08)" stroke-width="0.5" stroke-dasharray="2,2"/>
+                  
+                  <!-- Body Spacesuit -->
+                  <path d="M30,85 C30,70 38,62 50,62 C62,62 70,70 70,85" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+                  <path d="M40,62 L40,85" fill="none" stroke="rgba(0,210,255,0.3)" stroke-width="1.5"/>
+                  <path d="M60,62 L60,85" fill="none" stroke="rgba(0,210,255,0.3)" stroke-width="1.5"/>
+                  
+                  <!-- Helmet -->
+                  <circle cx="50" cy="42" r="20" fill="rgba(5,8,22,0.9)" stroke="#ffffff" stroke-width="2.5"/>
+                  <rect x="47" y="58" width="6" height="6" rx="1" fill="#7c4dff" stroke="#ffffff" stroke-width="1"/>
+                  
+                  <!-- Helmet Glass Visor -->
+                  <ellipse cx="50" cy="40" rx="15" ry="12" fill="url(#helmet-glass)" stroke="#00f5d4" stroke-width="1.5"/>
+                  
+                  <!-- Reflection lines -->
+                  <path d="M42,34 Q45,32 50,32" fill="none" stroke="#ffffff" stroke-width="1" stroke-linecap="round"/>
+                  
+                  <!-- Tiny stars details -->
+                  <circle cx="20" cy="30" r="0.8" fill="#ffffff"/>
+                  <circle cx="80" cy="25" r="1.2" fill="#00d2ff"/>
+                  <circle cx="75" cy="65" r="0.5" fill="#ffffff"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="glass-panel" data-tech-tag="LOCATION" style="width: 100%; text-align: center; padding: 12px;">
+            <div style="font-family: var(--font-mono); font-size: 11px; color: var(--color-primary);">LOCATION → INDIA</div>
+          </div>
+        </div>
+        
+        <div class="about-details">
+          <div class="glass-panel profile-card" data-tech-tag="PROFILE_DATA">
+            <h3 class="profile-name">Kunal Tamuli</h3>
+            <div class="profile-title">MCA Student • Frontend Developer • Technology Explorer</div>
+            <p class="profile-intro" style="line-height: 1.6;">
+              I'm Kunal Tamuli, an MCA student at Jain University with a strong interest in web development, software development, and emerging technologies. I enjoy turning ideas into practical digital experiences and continuously experimenting with new tools and technologies. My journey so far has involved building web applications, exploring frontend and backend development, working with databases, and applying machine learning to academic research. I've also completed a 6-week internship as a Frontend Developer at CodeTech. I'm currently focused on strengthening my development skills, building meaningful projects, and preparing for the next step in my professional journey.
+            </p>
+          </div>
+          
+          <div class="about-sub-panels">
+            <div class="glass-panel" data-tech-tag="MISSION_SPECS">
+              <h3 class="profile-title" style="margin-bottom: 12px;">CURRENT MISSIONS</h3>
+              <ul class="mission-profile-list">
+                <li><span class="lbl">NAME</span><span class="val">Kunal Tamuli</span></li>
+                <li><span class="lbl">STATUS</span><span class="val">MCA STUDENT</span></li>
+                <li><span class="lbl">CURRENT MISSION</span><span class="val" style="font-size:9px; text-transform:uppercase;">BUILD • LEARN • EXPERIMENT • GROW</span></li>
+                <li><span class="lbl">MISSION STATUS</span><span class="val" style="color:var(--color-success)">● ACTIVE</span></li>
+              </ul>
+            </div>
+            
+            <div class="glass-panel" data-tech-tag="CHRONOLOGY">
+              <h3 class="profile-title" style="margin-bottom: 12px;">TRAJECTORY LOG</h3>
+              <div class="astronaut-timeline">
+                <div class="timeline-event">
+                  <span class="timeline-year">2025</span>
+                  <span class="timeline-desc">Started MCA at Jain University.</span>
+                </div>
+                <div class="timeline-event">
+                  <span class="timeline-year">25-26</span>
+                  <span class="timeline-desc">Project explorations & CodeTech internship.</span>
+                </div>
+                <div class="timeline-event">
+                  <span class="timeline-year">26-27</span>
+                  <span class="timeline-desc">Strengthening development skills & research.</span>
+                </div>
+                <div class="timeline-event">
+                  <span class="timeline-year">2027</span>
+                  <span class="timeline-desc">Expected MCA graduation completion.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SKILLS VIEW (Technology Galaxy Orbit) -->
+    <section id="view-skills" class="console-view">
+      <h2 class="view-title">TECHNOLOGY GALAXY</h2>
+      <div class="view-subtitle">Interactive Planetary Skill Map</div>
+      
+      <div class="skills-galaxy-wrapper">
+        <div class="canvas-container-galaxy">
+          <canvas id="galaxy-canvas"></canvas>
+          <div class="hud-galaxy-instruction">> CLICK AN ORBITAL SYSTEM NODE TO SYNC DATA READOUTS</div>
+        </div>
+        
+        <div class="hud-node-details">
+          <div class="glass-panel" data-tech-tag="HUD_DB" style="flex-grow: 1;">
+            <h3 class="hud-panel-title" id="skill-hud-title">SELECT NODE</h3>
+            <div style="margin: 16px 0;">
+              <div class="hud-detail-stats">
+                <div class="hud-detail-row">
+                  <span>Engine Class</span>
+                  <span class="val" id="skill-hud-cat">-</span>
+                </div>
+                <div class="hud-detail-row">
+                  <span>Competence Rating</span>
+                  <span class="val" id="skill-hud-level">-</span>
+                </div>
+                <div class="hud-detail-row">
+                  <span>Missions Using It</span>
+                  <span class="val" id="skill-hud-projects">-</span>
+                </div>
+              </div>
+            </div>
+            <h4 style="font-family: var(--font-hud); font-size:11px; color:var(--color-primary); margin-bottom:8px; text-transform:uppercase; letter-spacing:1px;">Telemetry Summary</h4>
+            <p class="hud-panel-desc" id="skill-hud-desc">
+              Select a rotating orbital node in the system visualization dashboard to inspect experience scopes and architectural usages.
+            </p>
+          </div>
+          <div class="glass-panel" data-tech-tag="STACK_SUMMARY" style="padding: 16px;">
+            <div class="tech-tags-list">
+              <span class="tech-pill">React</span>
+              <span class="tech-pill">Node.js</span>
+              <span class="tech-pill">MongoDB</span>
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">Java</span>
+              <span class="tech-pill">Vercel</span>
+              <span class="tech-pill">Git</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PROJECTS VIEW (Mission Archive Database) -->
+    <section id="view-projects" class="console-view">
+      <div class="projects-header-bar">
+        <div>
+          <h2 class="view-title">MISSION ARCHIVE</h2>
+          <div class="view-subtitle">Explore the projects I've built and the problems I've explored.</div>
+        </div>
+        <div>
+          <ul class="projects-filters">
+            <li><button class="filter-btn active" data-filter="all">ALL</button></li>
+            <li><button class="filter-btn" data-filter="web">WEB</button></li>
+            <li><button class="filter-btn" data-filter="full-stack">FULL-STACK</button></li>
+            <li><button class="filter-btn" data-filter="mobile">MOBILE</button></li>
+            <li><button class="filter-btn" data-filter="machine-learning">MACHINE LEARNING</button></li>
+            <li><button class="filter-btn" data-filter="java">JAVA</button></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div id="projects-grid-container" class="projects-grid-layout">
+        <!-- Rendered dynamically by app.js (split into featured and additional grids) -->
+      </div>
+    </section>
+
+    <!-- 5. JOURNEY / FLIGHT TRAJECTORY VIEW -->
+    <section id="view-journey" class="console-view">
+      <h2 class="view-title">JOURNEY & EDUCATION</h2>
+      <div class="view-subtitle">Chronological Spaceflight Trajectory & Academic Orbit</div>
+      
+      <div class="journey-split-grid">
+        <div class="journey-left">
+          <div class="glass-panel" data-tech-tag="FLIGHT_PATH" style="flex-grow: 1; display: flex; flex-direction: column;">
+            <h3 class="profile-title" style="margin-bottom: 24px;">FLIGHT TRAJECTORY</h3>
+            <div id="journey-flight-container" style="flex-grow: 1; position: relative;">
+              <!-- Renders timeline path dynamically via trajectory.js -->
+            </div>
+          </div>
+        </div>
+        
+        <div class="journey-right">
+          <div class="glass-panel" data-tech-tag="ACADEMIC_ORBIT" style="flex-grow: 1; display: flex; flex-direction: column; gap: var(--spacing-lg);">
+            <h3 class="profile-title">ACADEMIC & PROFESSIONAL ORBITS</h3>
+            
+            <div class="education-cards">
+              <!-- Internship experience card -->
+              <div class="glass-panel edu-card" data-tech-tag="EXPERIENCE_01">
+                <div class="edu-header">
+                  <span class="edu-degree">FRONTEND DEVELOPER INTERN</span>
+                  <span class="edu-duration">6-WEEK INTERNSHIP</span>
+                </div>
+                <div class="edu-school">CodeTech</div>
+                <p style="font-size:12px; margin-top:8px; line-height:1.5; color:var(--text-secondary);">
+                  Completed a 6-week internship as a Frontend Developer, gaining practical experience in frontend development, user interface implementation, and applying web development concepts in a professional environment.
+                </p>
+              </div>
+
+              <!-- MCA card -->
+              <div class="glass-panel edu-card" data-tech-tag="ORBIT_01">
+                <div class="edu-header">
+                  <span class="edu-degree">Master of Computer Applications (MCA)</span>
+                  <span class="edu-duration">2025 - 2027 // CURRENTLY PURSUING</span>
+                </div>
+                <div class="edu-school">Jain University</div>
+                <div class="edu-areas">
+                  <span class="tech-pill">Web Development</span>
+                  <span class="tech-pill">Software Development</span>
+                  <span class="tech-pill">Backend Fundamentals</span>
+                  <span class="tech-pill">Modern Web Technologies</span>
+                </div>
+              </div>
+              
+              <!-- BCA card -->
+              <div class="glass-panel edu-card" data-tech-tag="ORBIT_02">
+                <div class="edu-header">
+                  <span class="edu-degree">Bachelor of Computer Applications (BCA)</span>
+                  <span class="edu-duration">COMPLETED</span>
+                </div>
+                <div class="edu-school">Presidency College</div>
+                <div class="edu-areas">
+                  <span class="tech-pill">Web Programming</span>
+                  <span class="tech-pill">Database Management</span>
+                  <span class="tech-pill">Algorithms</span>
+                  <span class="tech-pill">Data Structures</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. GITHUB SIGNAL VIEW (Coding Signals) -->
+    <section id="view-github" class="console-view">
+      <h2 class="view-title">CODING SIGNAL</h2>
+      <div class="view-subtitle">Explore my repositories, experiments, academic work, and development projects.</div>
+      
+      <div class="github-wrapper">
+        <div class="github-chart-panel">
+          <div class="glass-panel" data-tech-tag="CONSTELLATION_GRAPH" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <h3 class="profile-title" style="margin-bottom: 8px;">SIGNAL RECEPTION GRID</h3>
+              <div style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-bottom: 16px;">
+                CONNECTED TO REPOSITORY HOSTING DIRECTORIES... CONSTELLATION SYNC STABLE
+              </div>
+            </div>
+            
+            <div class="github-constellation-container">
+              <div class="github-mock-grid">
+                <!-- Javascript generates contribution boxes representing tiny stars -->
+                <script>
+                  const grid = document.querySelector('.github-mock-grid');
+                  if (grid) {
+                    for(let i=0; i<371; i++) {
+                      const day = document.createElement('div');
+                      day.className = 'github-day';
+                      const level = Math.random();
+                      if (level > 0.95) day.classList.add('level-4');
+                      else if (level > 0.85) day.classList.add('level-3');
+                      else if (level > 0.70) day.classList.add('level-2');
+                      else if (level > 0.50) day.classList.add('level-1');
+                      grid.appendChild(day);
+                    }
+                  }
+                </script>
+              </div>
+            </div>
+            
+            <div class="hud-detail-row" style="border: none; padding-top: var(--spacing-sm);">
+              <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted);">INDEX: Muted Star = No commit // Glowing Blue Star = Intense Coding Activity</span>
+              <a href="https://github.com/thekunal0010" target="_blank" class="btn-cosmic">OPEN GITHUB →</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="github-sidebar">
+          <div class="glass-panel" data-tech-tag="REPS_SPECS" style="height: 100%;">
+            <h3 class="profile-title" style="margin-bottom:16px;">CORES SPECIFICATIONS</h3>
+            <div class="github-languages">
+              <div class="lang-stat">
+                <div class="lang-header"><span>Java Applications</span><span>WORKING KNOWLEDGE</span></div>
+                <div class="lang-bar-bg"><div class="lang-bar-fg" style="width: 40%; background: #f89820;"></div></div>
+              </div>
+              <div class="lang-stat">
+                <div class="lang-header"><span>Python Engines</span><span>PROJECT EXPERIENCE</span></div>
+                <div class="lang-bar-bg"><div class="lang-bar-fg" style="width: 30%; background: #3776ab;"></div></div>
+              </div>
+              <div class="lang-stat">
+                <div class="lang-header"><span>JavaScript Web</span><span>PROJECT EXPERIENCE</span></div>
+                <div class="lang-bar-bg"><div class="lang-bar-fg" style="width: 20%; background: #f7df1e;"></div></div>
+              </div>
+              <div class="lang-stat">
+                <div class="lang-header"><span>HTML & CSS</span><span>PROJECT EXPERIENCE</span></div>
+                <div class="lang-bar-bg"><div class="lang-bar-fg" style="width: 10%; background: #00f5d4;"></div></div>
+              </div>
+            </div>
+            
+            <div style="border-top: 1px solid var(--border-dim); margin-top:24px; padding-top: 16px;">
+              <div class="hud-detail-stats">
+                <div class="hud-detail-row"><span>GitHub Profile</span><span class="val" style="font-size:11px;">thekunal0010</span></div>
+                <div class="hud-detail-row"><span>Connection Status</span><span class="val" style="color:var(--color-success)">CONNECTED</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. RESUME VIEW (Mission Dossier) -->
+    <section id="view-resume" class="console-view">
+      <h2 class="view-title">MISSION DOSSIER</h2>
+      <div class="view-subtitle">Credentials Summary & Technical Profile</div>
+      <div class="resume-container">
+        <!-- Document Viewer (Left Column) -->
+        <div class="document-viewer">
+          <div class="dossier-layout">
+            <div class="dossier-header">
+              <div>
+                <div class="dossier-title-name">KUNAL TAMULI</div>
+                <div style="font-size:13px; color:var(--color-highlight); margin-top:4px;">SOFTWARE DEVELOPER</div>
+              </div>
+              <div style="text-align: right; font-size: 11px; font-family: var(--font-mono); line-height: 1.5; color: var(--text-secondary);">
+                <div>EMAIL: kunaltamuli.kt@gmail.com</div>
+                <div>LINKEDIN: linkedin.com/in/kunaltamuli</div>
+                <div>GITHUB: thekunal0010</div>
+              </div>
+            </div>
+
+            <!-- Education Section -->
+            <div class="dossier-section">
+              <div class="dossier-section-title">ACADEMIC DEGREES</div>
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>MASTER OF COMPUTER APPLICATIONS (MCA)</span>
+                  <span class="edu-duration">2024 - 2027</span>
+                </div>
+                <div style="color:var(--text-primary); margin-top:2px;">Assam Don Bosco University</div>
+              </div>
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>BACHELOR OF SCIENCE (B.SC.) IN PHYSICS</span>
+                  <span class="edu-duration">2021 - 2024</span>
+                </div>
+                <div style="color:var(--text-primary); margin-top:2px;">Gauhati University</div>
+              </div>
+            </div>
+
+            <!-- Technical Portfolio Section -->
+            <div class="dossier-section">
+              <div class="dossier-section-title">TECHNICAL PORTFOLIO</div>
+              <div class="dossier-item" style="font-family: var(--font-mono); font-size: 12px; line-height: 1.8;">
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">LANGUAGES:</strong> Java, Python, JavaScript, PHP, SQL</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">WEB STACKS:</strong> React, Node.js, Express, HTML, CSS, Tailwind CSS, Vite</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">DATABASES:</strong> PostgreSQL, MongoDB, Oracle SQL, SQLite</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">CLOUD & DEVOPS:</strong> AWS, Git, GitHub, Docker, Vercel</div>
+              </div>
+            </div>
+
+            <!-- Missions / Projects Section -->
+            <div class="dossier-section">
+              <div class="dossier-section-title">COMPLETED MISSIONS (PROJECTS)</div>
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>1. NOTETUBE</span>
+                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">React / Node.js / MongoDB</span>
+                </div>
+                <p style="margin-top: 6px; color: var(--text-secondary);">Integrated notepad system synchronizing study entries to YouTube video timestamps.</p>
+              </div>
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>2. STUDENT INTERNSHIP TRACKING SYSTEM</span>
+                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">PHP / PostgreSQL</span>
+                </div>
+                <p style="margin-top: 6px; color: var(--text-secondary);">Coordination platform managing applications, recommendation reviews, and placements.</p>
+              </div>
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>3. SLEEP PATTERN AND ACADEMIC SUCCESS</span>
+                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">Python / Scikit-Learn</span>
+                </div>
+                <p style="margin-top: 6px; color: var(--text-secondary);">Machine learning classifier analyzing correlation ratios between circadian cycles and student GPA.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar Actions (Right Column) -->
+        <div class="project-details-sidebar">
+          <div class="glass-panel" data-tech-tag="DOSSIER_SYS" style="padding: var(--spacing-md); display:flex; flex-direction:column; gap:var(--spacing-md);">
+            <h4 class="project-section-title" style="font-size:11px; margin-bottom:0;">DOSSIER ACTIONS</h4>
+            <div style="font-size: 12px; line-height: 1.5; color: var(--text-secondary);">
+              Access the complete credentials transmission payload. Download the official dossier for print or offline review.
+            </div>
+            <a class="btn-cosmic" href="assets/kunal_tamuli_resume.pdf" download="kunal_tamuli_resume.pdf" style="width:100%;">DOWNLOAD DOSSIER (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. CONTACT VIEW (Communication Terminal) -->
+    <section id="view-contact" class="console-view">
+      <h2 class="view-title">ESTABLISH CONNECTION</h2>
+      <div class="view-subtitle">Have an opportunity, project, or idea? Open a transmission channel.</div>
+      
+      <p style="font-size: 14px; color: var(--text-secondary); max-width: 650px; margin-bottom: var(--spacing-xl); line-height: 1.6;">
+        Have a project, opportunity, collaboration, or just want to say hello? Send a transmission directly to Kunal.
+      </p>
+      
+      <div class="contact-wrapper" style="margin-bottom: var(--spacing-xxl);">
+        <!-- Left: Compose Transmission Console & Status -->
+        <div style="display:flex; flex-direction:column; gap:var(--spacing-lg);">
+          <div class="glass-panel" data-tech-tag="COMPOSE_TRANSMISSION">
+            <h3 class="profile-title" style="margin-bottom: var(--spacing-md); font-size:13px;">COMPOSE TRANSMISSION</h3>
+            <form class="terminal-form" id="communication-form">
+              <div class="terminal-form-row">
+                <div class="terminal-input-group">
+                  <label class="terminal-label" for="contact-name">NAME</label>
+                  <input class="terminal-input" type="text" id="contact-name" placeholder="E.g., Commander Kirk" required>
+                </div>
+                <div class="terminal-input-group">
+                  <label class="terminal-label" for="contact-email">EMAIL</label>
+                  <input class="terminal-input" type="email" id="contact-email" placeholder="email@domain.com" required>
+                </div>
+              </div>
+              <div class="terminal-input-group">
+                <label class="terminal-label" for="contact-subject">SUBJECT</label>
+                <input class="terminal-input" type="text" id="contact-subject" placeholder="Select orbit parameters..." required>
+              </div>
+              <div class="terminal-input-group">
+                <label class="terminal-label" for="contact-message">MESSAGE</label>
+                <textarea class="terminal-textarea" id="contact-message" placeholder="Type your encryption key data..." required></textarea>
+              </div>
+              
+              <div class="terminal-diagnostics" id="transmission-diagnostics">
+                > CONSOLE IDLE. READY TO ENCRYPT PACKETS.
+              </div>
+              
+              <button class="btn-cosmic" type="submit" style="width:100%;">TRANSMIT MESSAGE →</button>
+            </form>
+          </div>
+          
+          <div class="glass-panel" data-tech-tag="TRANSCEIVER_STATUS" style="padding: var(--spacing-md);">
+            <div class="hud-detail-stats">
+              <div class="hud-detail-row">
+                <span>COMMUNICATION STATUS</span>
+                <span class="val" style="color:var(--color-success); font-weight:bold;">● CHANNEL ONLINE</span>
+              </div>
+              <div class="hud-detail-row">
+                <span>AVAILABLE FOR</span>
+                <span class="val" style="font-size: 10px; text-align: right; line-height: 1.4;">Internships, Entry-Level Opportunities, Projects, Collaborations</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right: Direct Transmissions & Channels -->
+        <div style="display:flex; flex-direction:column; gap:var(--spacing-lg);">
+          <!-- Primary CTA & Copy block -->
+          <div class="glass-panel" data-tech-tag="PRIMARY_LINK" style="display:flex; flex-direction:column; align-items:center; text-align:center; gap:var(--spacing-md); padding:var(--spacing-xl);">
+            <a href="mailto:thekunal0010@gmail.com" class="btn-cosmic" id="contact-primary-email-btn" style="width: 100%; border-color: var(--color-primary); box-shadow: var(--glow-primary); font-size:13px; padding: 14px 0;">
+              TRANSMIT EMAIL →
+            </a>
+            
+            <div style="margin-top:var(--spacing-sm); width: 100%;">
+              <div class="terminal-label" style="font-size:9px; margin-bottom:4px;">COMMUNICATION CHANNEL</div>
+              <a href="mailto:thekunal0010@gmail.com" class="channel-val" style="font-family:var(--font-mono); font-size:13px; color:var(--color-primary); text-decoration:none; display:block; margin-bottom:8px;">thekunal0010@gmail.com</a>
+              
+              <button class="btn-cosmic secondary" id="copy-email-btn" style="padding: 6px 16px; font-size:10px;">COPY EMAIL</button>
+              <div id="copy-confirmation" style="font-family:var(--font-mono); font-size:10px; color:var(--color-success); margin-top:8px; height: 12px; opacity:0; transition:opacity 0.2s ease;">ADDRESS COPIED ✓</div>
+            </div>
+          </div>
+          
+          <!-- Secondary Gateways -->
+          <div class="glass-panel" data-tech-tag="TRANSCEIVER_OPTIONS" style="display:flex; flex-direction:column; gap:var(--spacing-md); padding:var(--spacing-lg);">
+            <h3 class="profile-title" style="font-size:12px; margin-bottom:4px;">SECONDARY GATEWAYS</h3>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-dim); padding-bottom:var(--spacing-sm);">
+              <div>
+                <div class="terminal-label" style="font-size:9px;">EMAIL</div>
+                <div style="font-size:12px; color:var(--text-secondary);">Direct communication</div>
+              </div>
+              <a href="mailto:thekunal0010@gmail.com" class="btn-cosmic secondary" style="font-size:10px; padding: 6px 12px;">SEND EMAIL →</a>
+            </div>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-dim); padding-bottom:var(--spacing-sm);">
+              <div>
+                <div class="terminal-label" style="font-size:9px;">LINKEDIN</div>
+                <div style="font-size:12px; color:var(--text-secondary);">Connect professionally</div>
+              </div>
+              <a href="https://www.linkedin.com/in/thekunal0010" target="_blank" class="btn-cosmic secondary" style="font-size:10px; padding: 6px 12px;">OPEN LINKEDIN →</a>
+            </div>
+            
+            <div style="display:flex; justify-content:space-between; align-items:center; padding-bottom:var(--spacing-xxs);">
+              <div>
+                <div class="terminal-label" style="font-size:9px;">GITHUB</div>
+                <div style="font-size:12px; color:var(--text-secondary);">Explore my repositories and projects</div>
+              </div>
+              <a href="https://github.com/thekunal0010" target="_blank" class="btn-cosmic secondary" style="font-size:10px; padding: 6px 12px;">OPEN GITHUB →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Final closure CTA -->
+      <div class="glass-panel" data-tech-tag="FINAL_SYSTEM_CALL" style="display:flex; flex-direction:column; align-items:center; text-align:center; padding:var(--spacing-xl) var(--spacing-xxl); margin-bottom:var(--spacing-xxl);">
+        <h3 style="font-family:var(--font-hud); font-size:24px; font-weight:700; letter-spacing:2px; margin-bottom:8px;">EVERY MISSION STARTS WITH A TRANSMISSION.</h3>
+        <p style="font-size:14px; color:var(--text-secondary); margin-bottom:var(--spacing-lg);">Ready to build something?</p>
+        <a href="mailto:thekunal0010@gmail.com" class="btn-cosmic" style="border-color: var(--color-primary); box-shadow: var(--glow-primary); font-size:12px;">START A CONVERSATION →</a>
+      </div>
+      
+      <!-- Minimal futuristic footer -->
+      <footer style="border-top:1px solid var(--border-dim); padding-top:var(--spacing-xl); padding-bottom:var(--spacing-lg); width:100%; display:flex; flex-direction:column; gap:var(--spacing-md);">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--spacing-md);">
+          <div>
+            <div style="font-family:var(--font-mono); font-size:14px; color:var(--color-primary); margin-bottom:4px;">[KUNAL // SYSTEM_V2.6]</div>
+            <div style="font-family:var(--font-hud); font-size:10px; color:var(--text-muted); letter-spacing:1px; text-transform:uppercase;">Student • MCA Student • Frontend Developer • Technology Explorer</div>
+          </div>
+          <div style="display:flex; gap:var(--spacing-lg); font-family:var(--font-mono); font-size:11px;">
+            <a href="https://github.com/thekunal0010" target="_blank" style="color:var(--text-secondary); text-decoration:none; transition:color 0.2s ease;">GITHUB</a>
+            <a href="https://www.linkedin.com/in/thekunal0010" target="_blank" style="color:var(--text-secondary); text-decoration:none; transition:color 0.2s ease;">LINKEDIN</a>
+            <a href="mailto:thekunal0010@gmail.com" style="color:var(--text-secondary); text-decoration:none; transition:color 0.2s ease;">EMAIL</a>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:11px; color:var(--text-muted); padding-top:var(--spacing-xs);">
+          <span>&copy; 2026 Kunal Tamuli</span>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="status-dot" style="margin:0;"></span>
+            <span>SYSTEM ONLINE</span>
+          </div>
+        </div>
+      </footer>
+    </section>
+
+    <!-- 9. 404 / LOST IN SPACE VIEW -->
+    <section id="view-lost" class="console-view">
+      <div class="lost-container">
+        <div class="lost-title">404</div>
+        <div class="view-subtitle" style="justify-content:center; color:var(--color-danger)">LOST IN COLD SPACE</div>
+        <p class="lost-desc">
+          Your transmission signal drifted off course. The spacecraft navigator node database could not locate this coordinate link path.
+        </p>
+        <button class="btn-cosmic" onclick="navigateToView('home')">RETURN TO SYSTEM CORE →</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Expanded Project Details Modal Container -->
+  <div class="project-modal-backdrop" id="project-detail-modal">
+    <div class="project-modal-content">
+      <button class="project-modal-close-btn" id="modal-close-btn">X</button>
+      <div id="project-modal-details-box">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading scripts sequentially -->
+  <script src="starfield.js"></script>
+  <script src="galaxy.js"></script>
+  <script src="trajectory.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

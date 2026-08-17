@@ -637,18 +637,101 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
+  // Reusable Email Composer helper
+  function openEmailComposer({ to = 'thekunal0010@gmail.com', subject = '', body = '' } = {}) {
+    let gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(to)}`;
+    if (subject) {
+      gmailUrl += `&su=${encodeURIComponent(subject)}`;
+    }
+    if (body) {
+      gmailUrl += `&body=${encodeURIComponent(body)}`;
+    }
+
+    const newWin = window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+    if (!newWin || newWin.closed || typeof newWin.closed === 'undefined') {
+      let mailtoUrl = `mailto:${encodeURIComponent(to)}`;
+      const params = [];
+      if (subject) params.push(`subject=${encodeURIComponent(subject)}`);
+      if (body) params.push(`body=${encodeURIComponent(body)}`);
+      if (params.length > 0) mailtoUrl += `?${params.join('&')}`;
+      window.location.href = mailtoUrl;
+    }
+  }
+
   // Copy Email Address Action
   const copyBtn = document.getElementById('copy-email-btn');
-  const copyConfirm = document.getElementById('copy-confirmation');
-  if (copyBtn && copyConfirm) {
-    copyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('thekunal0010@gmail.com').then(() => {
+  if (copyBtn) {
+    let copyTimeout = null;
+    const handleCopy = (e) => {
+      e.preventDefault();
+      const emailToCopy = 'thekunal0010@gmail.com';
+      const onCopied = () => {
         playBeep(1400, 0.06, 'triangle', 0.05);
-        copyConfirm.style.opacity = '1';
-        setTimeout(() => {
-          copyConfirm.style.opacity = '0';
+        copyBtn.textContent = 'ADDRESS COPIED ✓';
+        if (copyTimeout) clearTimeout(copyTimeout);
+        copyTimeout = setTimeout(() => {
+          copyBtn.textContent = 'COPY EMAIL';
         }, 2000);
-      });
+      };
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(emailToCopy)
+          .then(onCopied)
+          .catch(() => {
+            fallbackCopy(emailToCopy);
+            onCopied();
+          });
+      } else {
+        fallbackCopy(emailToCopy);
+        onCopied();
+      }
+    };
+
+    function fallbackCopy(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (err) {
+        console.error('Fallback copy failed', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    copyBtn.addEventListener('click', handleCopy);
+  }
+
+  // Direct Email Buttons
+  const primaryEmailBtn = document.getElementById('contact-primary-email-btn');
+  if (primaryEmailBtn) {
+    primaryEmailBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      playBeep(1200, 0.05, 'sine', 0.04);
+      openEmailComposer({ to: 'thekunal0010@gmail.com' });
+    });
+  }
+
+  const secondaryEmailBtn = document.getElementById('contact-secondary-email-btn');
+  if (secondaryEmailBtn) {
+    secondaryEmailBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      playBeep(1200, 0.05, 'sine', 0.04);
+      openEmailComposer({ to: 'thekunal0010@gmail.com' });
+    });
+  }
+
+  const startConvBtn = document.getElementById('start-conversation-btn');
+  if (startConvBtn) {
+    startConvBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      playBeep(1200, 0.05, 'sine', 0.04);
+      openEmailComposer({ to: 'thekunal0010@gmail.com' });
     });
   }
   
@@ -732,31 +815,63 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
-      const name = document.getElementById('contact-name').value;
-      const email = document.getElementById('contact-email').value;
-      const subject = document.getElementById('contact-subject').value;
-      const msg = document.getElementById('contact-message').value;
+      const nameInput = document.getElementById('contact-name');
+      const emailInput = document.getElementById('contact-email');
+      const subjectInput = document.getElementById('contact-subject');
+      const msgInput = document.getElementById('contact-message');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const subject = subjectInput ? subjectInput.value.trim() : '';
+      const msg = msgInput ? msgInput.value.trim() : '';
       
-      if (!name || !email || !msg) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      
+      if (!name) {
         playBeep(300, 0.25, 'sawtooth', 0.06);
-        transmissionLog.innerHTML = '<span class="diagnostic-text" style="color:var(--color-danger)">ERROR: TR-PACKET DATA CORRUPTED. FILL ALL FIELDS.</span>';
+        transmissionLog.innerHTML = '<span class="diagnostic-text" style="color:var(--color-danger)">> ERROR: NAME REQUIRED</span>';
+        if (nameInput) nameInput.focus();
         return;
       }
       
-      playBeep(800, 0.1, 'sine', 0.05);
-      transmissionLog.innerHTML = '<span class="diagnostic-text">ENCRYPTING TRANSMISSION PACKETS...</span>';
+      if (!email) {
+        playBeep(300, 0.25, 'sawtooth', 0.06);
+        transmissionLog.innerHTML = '<span class="diagnostic-text" style="color:var(--color-danger)">> ERROR: EMAIL REQUIRED</span>';
+        if (emailInput) emailInput.focus();
+        return;
+      }
       
-      setTimeout(() => {
-        playBeep(1200, 0.1, 'sine', 0.05);
-        transmissionLog.innerHTML = '<span class="diagnostic-text">ALIGNING COMMUNICATIONS DISH... SENDING DEEP SPACE SIGNAL...</span>';
-        
-        setTimeout(() => {
-          playSweep(300, 1500, 0.4, 0.08);
-          transmissionLog.innerHTML = `<span class="diagnostic-text" style="color:var(--color-success)">TRANSMISSION SUCCESSFUL. SATELLITE HANDSHAKE COMPLETED.<br>SECURE HASH: ${Math.random().toString(36).substring(2, 10).toUpperCase()}-NODE</span>`;
-          console.log(`Transmission received from callsgn: ${name}, mail: ${email}, subject: ${subject || 'None'}, data: ${msg}`);
-          contactForm.reset();
-        }, 1200);
-      }, 800);
+      if (!emailRegex.test(email)) {
+        playBeep(300, 0.25, 'sawtooth', 0.06);
+        transmissionLog.innerHTML = '<span class="diagnostic-text" style="color:var(--color-danger)">> ERROR: VALID EMAIL REQUIRED</span>';
+        if (emailInput) emailInput.focus();
+        return;
+      }
+      
+      if (!subject) {
+        playBeep(300, 0.25, 'sawtooth', 0.06);
+        transmissionLog.innerHTML = '<span class="diagnostic-text" style="color:var(--color-danger)">> ERROR: SUBJECT REQUIRED</span>';
+        if (subjectInput) subjectInput.focus();
+        return;
+      }
+      
+      if (!msg) {
+        playBeep(300, 0.25, 'sawtooth', 0.06);
+        transmissionLog.innerHTML = '<span class="diagnostic-text" style="color:var(--color-danger)">> ERROR: MESSAGE REQUIRED</span>';
+        if (msgInput) msgInput.focus();
+        return;
+      }
+      
+      const bodyText = `Hello Kunal,\n\nName: ${name}\nEmail: ${email}\n\n${msg}\n\nBest regards,\n${name}`;
+      
+      playBeep(1200, 0.1, 'sine', 0.05);
+      transmissionLog.innerHTML = '<span class="diagnostic-text" style="color:var(--color-highlight)">> TRANSMISSION CHANNEL OPENED →</span>';
+      
+      openEmailComposer({
+        to: 'thekunal0010@gmail.com',
+        subject: subject,
+        body: bodyText
+      });
     });
   }
   

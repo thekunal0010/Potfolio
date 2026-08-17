@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kunal Tamuli // Student Portfolio</title>
   <meta name="description" content="Personal Developer Portfolio of Kunal Tamuli - MCA student and technology explorer. Exploration of projects, skills, and coding signals.">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2.1">
 </head>
 <body>
 
@@ -438,68 +438,108 @@
             <div class="dossier-header">
               <div>
                 <div class="dossier-title-name">KUNAL TAMULI</div>
-                <div style="font-size:13px; color:var(--color-highlight); margin-top:4px;">SOFTWARE DEVELOPER</div>
+                <div style="font-size:13px; color:var(--color-highlight); margin-top:4px;">MCA CANDIDATE • FULL-STACK &amp; ML DEVELOPER</div>
               </div>
               <div style="text-align: right; font-size: 11px; font-family: var(--font-mono); line-height: 1.5; color: var(--text-secondary);">
-                <div>EMAIL: kunaltamuli.kt@gmail.com</div>
-                <div>LINKEDIN: linkedin.com/in/kunaltamuli</div>
-                <div>GITHUB: thekunal0010</div>
+                <div>LOCATION: Bengaluru, Karnataka, India</div>
+                <div>PHONE: +91-6900186472</div>
+                <div>EMAIL: thekunal0010@gmail.com</div>
+                <div>LINKEDIN: linkedin.com/in/thekunal0010</div>
+                <div>GITHUB: github.com/thekunal0010</div>
+              </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div class="dossier-section">
+              <div class="dossier-section-title">SUMMARY</div>
+              <div class="dossier-item" style="color: var(--text-secondary); line-height: 1.6;">
+                MCA candidate (2027) with hands-on experience building full-stack web applications and machine learning solutions using React, Next.js, Node.js, Python, Flask, and SQL/NoSQL databases. Experienced in designing REST APIs, implementing authentication and role-based access, integrating databases, and preprocessing data for ML workflows — with a track record of shipping complete, working applications rather than isolated exercises.
+              </div>
+            </div>
+
+            <!-- Technical Skills Section -->
+            <div class="dossier-section">
+              <div class="dossier-section-title">TECHNICAL SKILLS</div>
+              <div class="dossier-item" style="font-family: var(--font-mono); font-size: 12px; line-height: 1.8;">
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">LANGUAGES:</strong> Java, Python, JavaScript, TypeScript, HTML, CSS</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">FRONTEND:</strong> React.js, Next.js, Vite, Tailwind CSS</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">BACKEND:</strong> Node.js, Express.js, Flask, Prisma ORM, REST APIs</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">DATABASES:</strong> MongoDB, PostgreSQL, MySQL, SQLite, Oracle</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">MACHINE LEARNING / DATA:</strong> Pandas, NumPy, Scikit-learn, Matplotlib, Data Preprocessing, Feature Engineering, Classification, Regression, Clustering, Model Evaluation</div>
+                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">CLOUD &amp; TOOLS:</strong> Git, GitHub, VS Code, AWS, Vercel, Jupyter Notebook</div>
+              </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="dossier-section">
+              <div class="dossier-section-title">PROJECTS</div>
+              
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>REAL ESTATE MANAGEMENT SYSTEM</span>
+                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">Next.js 16, React 19, TypeScript, Prisma, SQLite, JWT</span>
+                </div>
+                <ul style="margin: 6px 0 0 16px; color: var(--text-secondary); line-height: 1.5;">
+                  <li>Developed a full-stack real estate platform with role-based access for Customer and Lister users, built with Next.js 16, React 19, and TypeScript.</li>
+                  <li>Implemented listing management for listers (create, update, delete, image upload) and browsing/search for customers, with filters by city, property type, price range, bedrooms, and lister, plus a favorites feature.</li>
+                  <li>Engineered JWT-based authentication with HTTP-only cookies, bcryptjs password hashing, and a session/current-user endpoint to enforce role-based access control.</li>
+                  <li>Modeled the data layer with Prisma ORM over SQLite and built REST API routes to handle listings, favorites, and authentication.</li>
+                </ul>
+              </div>
+
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>EVENT MANAGEMENT SYSTEM (MERN STACK)</span>
+                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">React, Node.js, Express.js, MongoDB</span>
+                </div>
+                <ul style="margin: 6px 0 0 16px; color: var(--text-secondary); line-height: 1.5;">
+                  <li>Developed a full-stack event management platform enabling users to discover, join, and track events through a personalized dashboard.</li>
+                  <li>Engineered RESTful backend services with Node.js and Express, and designed MongoDB schemas to support CRUD operations on event and user data.</li>
+                  <li>Implemented authentication and event-history tracking, integrating frontend and backend for a seamless user experience.</li>
+                </ul>
+              </div>
+
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>NOTETUBE – VIDEO NOTES &amp; SUMMARIZATION PLATFORM</span>
+                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">React, Flask, MongoDB, JWT, bcrypt, REST API</span>
+                </div>
+                <ul style="margin: 6px 0 0 16px; color: var(--text-secondary); line-height: 1.5;">
+                  <li>Built a full-stack web application that retrieves video transcripts and generates automated notes/summaries, using React for the frontend and a Flask/Python backend.</li>
+                  <li>Designed REST API endpoints connecting the frontend to backend services for transcript retrieval and note generation, and implemented JWT/bcrypt-based user authentication.</li>
+                  <li>Integrated MongoDB for persistent storage of user and application data, and configured environment variables for a modular, maintainable architecture.</li>
+                </ul>
+              </div>
+
+              <div class="dossier-item">
+                <div class="dossier-item-header">
+                  <span>DECODING ACADEMIC SUCCESS – SLEEP PATTERN RESEARCH</span>
+                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">Python, Pandas, Scikit-learn, Matplotlib</span>
+                </div>
+                <ul style="margin: 6px 0 0 16px; color: var(--text-secondary); line-height: 1.5;">
+                  <li>Conducted an academic research project analyzing student survey data to study the relationship between sleep patterns and academic performance.</li>
+                  <li>Performed data cleaning, preprocessing, exploratory data analysis, and feature engineering, then applied machine learning models with feature-importance analysis and evaluation.</li>
+                  <li>Visualized findings using Matplotlib to communicate key patterns and support the analysis conclusions.</li>
+                </ul>
               </div>
             </div>
 
             <!-- Education Section -->
             <div class="dossier-section">
-              <div class="dossier-section-title">ACADEMIC DEGREES</div>
+              <div class="dossier-section-title">EDUCATION</div>
               <div class="dossier-item">
                 <div class="dossier-item-header">
                   <span>MASTER OF COMPUTER APPLICATIONS (MCA)</span>
-                  <span class="edu-duration">2024 - 2027</span>
+                  <span class="edu-duration">2025 – 2027</span>
                 </div>
-                <div style="color:var(--text-primary); margin-top:2px;">Assam Don Bosco University</div>
+                <div style="color:var(--text-primary); margin-top:2px;">Jain University, Bengaluru</div>
               </div>
               <div class="dossier-item">
                 <div class="dossier-item-header">
-                  <span>BACHELOR OF SCIENCE (B.SC.) IN PHYSICS</span>
-                  <span class="edu-duration">2021 - 2024</span>
+                  <span>BACHELOR OF COMPUTER APPLICATIONS (BCA)</span>
+                  <span class="edu-duration">2022 – 2025</span>
                 </div>
-                <div style="color:var(--text-primary); margin-top:2px;">Gauhati University</div>
-              </div>
-            </div>
-
-            <!-- Technical Portfolio Section -->
-            <div class="dossier-section">
-              <div class="dossier-section-title">TECHNICAL PORTFOLIO</div>
-              <div class="dossier-item" style="font-family: var(--font-mono); font-size: 12px; line-height: 1.8;">
-                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">LANGUAGES:</strong> Java, Python, JavaScript, PHP, SQL</div>
-                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">WEB STACKS:</strong> React, Node.js, Express, HTML, CSS, Tailwind CSS, Vite</div>
-                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">DATABASES:</strong> PostgreSQL, MongoDB, Oracle SQL, SQLite</div>
-                <div style="margin-bottom: 6px;"><strong style="color:var(--text-primary);">CLOUD & DEVOPS:</strong> AWS, Git, GitHub, Docker, Vercel</div>
-              </div>
-            </div>
-
-            <!-- Missions / Projects Section -->
-            <div class="dossier-section">
-              <div class="dossier-section-title">COMPLETED MISSIONS (PROJECTS)</div>
-              <div class="dossier-item">
-                <div class="dossier-item-header">
-                  <span>1. NOTETUBE</span>
-                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">React / Node.js / MongoDB</span>
-                </div>
-                <p style="margin-top: 6px; color: var(--text-secondary);">Integrated notepad system synchronizing study entries to YouTube video timestamps.</p>
-              </div>
-              <div class="dossier-item">
-                <div class="dossier-item-header">
-                  <span>2. STUDENT INTERNSHIP TRACKING SYSTEM</span>
-                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">PHP / PostgreSQL</span>
-                </div>
-                <p style="margin-top: 6px; color: var(--text-secondary);">Coordination platform managing applications, recommendation reviews, and placements.</p>
-              </div>
-              <div class="dossier-item">
-                <div class="dossier-item-header">
-                  <span>3. SLEEP PATTERN AND ACADEMIC SUCCESS</span>
-                  <span style="font-weight:normal; font-size:10px; color:var(--color-highlight);">Python / Scikit-Learn</span>
-                </div>
-                <p style="margin-top: 6px; color: var(--text-secondary);">Machine learning classifier analyzing correlation ratios between circadian cycles and student GPA.</p>
+                <div style="color:var(--text-primary); margin-top:2px;">Presidency College, Bengaluru</div>
               </div>
             </div>
           </div>

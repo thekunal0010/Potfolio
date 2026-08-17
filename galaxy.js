@@ -73,6 +73,26 @@ class TechGalaxy {
       this.mouse.x = e.clientX - rect.left;
       this.mouse.y = e.clientY - rect.top;
     });
+
+    // Touch event coordinates tracking for mobile
+    const trackTouch = (e) => {
+      if (e.touches && e.touches.length > 0) {
+        const rect = this.canvas.getBoundingClientRect();
+        this.mouse.x = e.touches[0].clientX - rect.left;
+        this.mouse.y = e.touches[0].clientY - rect.top;
+      }
+    };
+
+    this.canvas.addEventListener('touchstart', trackTouch, { passive: true });
+    this.canvas.addEventListener('touchmove', trackTouch, { passive: true });
+    this.canvas.addEventListener('touchend', () => {
+      if (this.hoveredNode) {
+        this.selectedNode = this.hoveredNode;
+        if (this.onSelect) this.onSelect(this.selectedNode);
+        const event = new CustomEvent('galaxyClick', { detail: this.selectedNode });
+        window.dispatchEvent(event);
+      }
+    });
     
     // Select node on click
     this.canvas.addEventListener('click', () => {
@@ -97,15 +117,18 @@ class TechGalaxy {
     
     // Center of visual field shifted slightly upward and leftwards centered
     const cx = this.canvas.width / 2;
-    const cy = this.canvas.height / 2 - 35; // Slightly upward to sit between heading and status instruction
-    
-    // Responsive scaling check
+    const isSmallMobile = this.canvas.width < 480;
     const isMobile = this.canvas.width < 768;
     const isTablet = this.canvas.width >= 768 && this.canvas.width <= 1024;
+    const cy = this.canvas.height / 2 - (isSmallMobile ? 15 : 30);
     
-    // Set precise orbit dimensions as requested
+    // Set precise orbit dimensions with small mobile support
     let r1, r2, r3;
-    if (isMobile) {
+    if (isSmallMobile) {
+      r1 = 55;
+      r2 = 95;
+      r3 = 135;
+    } else if (isMobile) {
       r1 = 70;
       r2 = 115;
       r3 = 160;
